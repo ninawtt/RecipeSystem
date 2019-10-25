@@ -44,5 +44,24 @@ namespace RecipeSystem.Controllers
                 .FirstOrDefault(r => r.RecipeID == recipeID);
             return View(recipe);
         }
+
+        [HttpGet]
+        public ViewResult ReviewRecipe()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult ReviewRecipe(Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("Thanks");
+            }
+            else
+            {
+                return View(review);
+            }
+        }
     }
 }
