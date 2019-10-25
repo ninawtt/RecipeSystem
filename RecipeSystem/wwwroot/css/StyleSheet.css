@@ -1,0 +1,24 @@
+﻿.homePic {
+    height: 100%;
+    background-image: url('/images/banner.jpg');
+}
+
+#dishPic {
+    width: 300px;
+}
+
+#dishPicDiv {
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+footer {
+    background-color: #eda39a;
+    padding-bottom: 0px !important;
+}
+
+#renderBody {
+    min-height: 583px;
+    padding-top: 60px;
+}
