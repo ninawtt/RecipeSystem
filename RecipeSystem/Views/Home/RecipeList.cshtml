@@ -1,3 +1,29 @@
-﻿@{
+﻿@model IEnumerable<Recipe>
+@{
     ViewBag.Title = "Recipe List - iCOOK";
 }
+
+<div class="panel panel-success text-center" id="recipeDiv">
+    <div class="panel-heading text-center"><h2>Collection of Recipes</h2></div>
+
+    @foreach (Recipe r in Model)
+    {
+        <div class="card card-outline-primary m-1 p-1 d-inline-block">
+            <div class="bg-faded p-1">
+                <img id="dishPic" src="~/images/@r.ImagePath" />
+            </div>
+            <div class="bg-faded p-1">
+                <h4>
+                    @r.DishName
+                </h4>
+                <small>by @r.Author</small>
+            </div>
+
+            <span class="card-text p-1">
+                @r.BriefIntro
+            </span>
+            
+        </div>
+    }
+
+</div>

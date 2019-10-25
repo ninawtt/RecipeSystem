@@ -31,7 +31,11 @@ namespace RecipeSystem.Controllers
             {
                 return View(recipe);
             }
-            
+        }
+
+        public ViewResult RecipeList()
+        {
+            return View(RecipeRepository.Recipes);
         }
     }
 }
