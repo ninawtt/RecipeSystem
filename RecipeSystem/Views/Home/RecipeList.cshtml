@@ -8,22 +8,7 @@
 
     @foreach (Recipe r in Model)
     {
-        <div class="card card-outline-primary m-1 p-1 d-inline-block">
-            <div class="bg-faded p-1">
-                <img id="dishPic" src="~/images/@r.ImagePath" />
-            </div>
-            <div class="bg-faded p-1">
-                <h4>
-                    @r.DishName
-                </h4>
-                <small>by @r.Author</small>
-            </div>
-
-            <span class="card-text p-1">
-                @r.BriefIntro
-            </span>
-            
-        </div>
+        @Html.Partial("RecipeSummary", r)
     }
 
 </div>

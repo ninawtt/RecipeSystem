@@ -12,6 +12,7 @@ namespace RecipeSystem.Models
             // hard code
             new Recipe
                 {
+                    RecipeID = 1,
                     DishName = "Sesame Chicken",
                     Author = "MISSFAVOR",
                     BriefIntro = "Delicious Sesame Chicken",
@@ -23,6 +24,7 @@ namespace RecipeSystem.Models
                 },
                 new Recipe
                 {
+                    RecipeID = 2,
                     DishName = "Chicken Congee",
                     Author = "Buckwheat Queen",
                     BriefIntro = "Delicious Chicken Congee",
@@ -34,6 +36,7 @@ namespace RecipeSystem.Models
                 },
                 new Recipe
                 {
+                    RecipeID = 3,
                     DishName = "Pad Thai",
                     Author = "Allrecipes",
                     BriefIntro = "Delicious Pad Thai",
@@ -45,6 +48,7 @@ namespace RecipeSystem.Models
                 },
                 new Recipe
                 {
+                    RecipeID = 4,
                     DishName = "Chicken Enchilada Skillet",
                     Author = " Campbell's Canada",
                     BriefIntro = "Delicious Chicken Enchilada Skillet",

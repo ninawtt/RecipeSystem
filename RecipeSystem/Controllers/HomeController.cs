@@ -37,5 +37,12 @@ namespace RecipeSystem.Controllers
         {
             return View(RecipeRepository.Recipes);
         }
+
+        public ViewResult ViewRecipe(int recipeID)
+        {
+            Recipe recipe = RecipeRepository.Recipes
+                .FirstOrDefault(r => r.RecipeID == recipeID);
+            return View(recipe);
+        }
     }
 }
