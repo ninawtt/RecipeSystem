@@ -1,7 +1,23 @@
-﻿.homePic {
+﻿/*_BasicLayout*/
+#renderBody {
+    min-height: 583px;
+    padding-top: 60px;
+}
+
+.indexPage {
     height: 100%;
     background-image: url('/images/banner.jpg');
 }
+
+footer {
+    background-color: #eda39a;
+    padding-bottom: 0px !important;
+}
+
+
+
+
+
 
 #dishPic {
     width: 300px;
@@ -13,12 +29,5 @@
     margin-left: auto;
 }
 
-footer {
-    background-color: #eda39a;
-    padding-bottom: 0px !important;
-}
 
-#renderBody {
-    min-height: 583px;
-    padding-top: 60px;
-}
+
