@@ -13,5 +13,25 @@ namespace RecipeSystem.Controllers
         {
             return View();
         }
+
+        public ViewResult AddRecipe()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult AddRecipe(Recipe recipe)
+        {
+            if (ModelState.IsValid)
+            {
+                RecipeRepository.AddRecipe(recipe);
+                return View("Thanks");
+            }
+            else
+            {
+                return View(recipe);
+            }
+            
+        }
     }
 }
