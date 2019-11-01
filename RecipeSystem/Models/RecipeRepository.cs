@@ -9,7 +9,7 @@ namespace RecipeSystem.Models
     {
         private static List<Recipe> recipes = new List<Recipe>
         {
-            // hard code
+            // hard code data
             new Recipe
                 {
                     RecipeID = 1,
@@ -59,6 +59,7 @@ namespace RecipeSystem.Models
                     ImagePath = "Enchilada.png"
                 }
         };
+        private static int counter = recipes.Count();
 
         public static IEnumerable<Recipe> Recipes
         {
@@ -70,6 +71,7 @@ namespace RecipeSystem.Models
 
         public static void AddRecipe(Recipe recipe)
         {
+            recipe.RecipeID = ++counter;
             recipes.Add(recipe);
         }
     }
