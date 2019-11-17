@@ -11,17 +11,12 @@
         <small>by @Model.Author</small>
     </div>
 
-    <form id="@Model.RecipeID" asp-action="ViewRecipe"
-          asp-controller="Home" method="post">
-        <input type="hidden" asp-for="RecipeID" value="@Model.RecipeID" />
+    <div>
         <span class="card-text p-1">
             @Model.BriefIntro
-            <button type="submit"
-                    class="btn btn-success btn-sm pull-right"
-                    style="float: right">
+            <a class="btn btn-success btn-sm pull-right" asp-action="ViewRecipe" asp-route-recipeID="@Model.RecipeID">
                 View Recipe
-            </button>
+            </a>
         </span>
-    </form>
-
+    </div>
 </div>

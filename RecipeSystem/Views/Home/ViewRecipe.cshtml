@@ -3,9 +3,6 @@
     ViewBag.Title = $"{Model.DishName} by {@Model.Author} - iCOOK";
 }
 
-@*<div class="panel panel-success text-center">*@
-    @*<div class="panel-heading text-center"><h2>@Model.DishName</h2></div>*@
-    @*<div class="card card-outline-primary w-50 m-1 p-1 d-inline-block">*@
     <div class="card border-info mb-3 w-50 align-self-center mr-auto ml-auto" >
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -20,9 +17,7 @@
                             <i class="fas fa-user-circle"></i>@Model.Author
                         </small>
                     </p>
-                    <form>
-                        <button class="btn btn-info" asp-action="ReviewRecipe">Add Review</button>
-                    </form>
+                    <a class="btn btn-info" asp-action="ReviewRecipe" asp-controller="Home">Add Review</a>
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ namespace RecipeSystem.Models
 
         [Required(ErrorMessage = "Please enter your comment")]
         public string Comment { get; set; }
+
         public DateTime ReviewTime { get; set; }
     }
 }
