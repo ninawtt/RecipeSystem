@@ -28,6 +28,27 @@ namespace RecipeSystem
 
             // to the static files inside wwwroot folder
             app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                // default, when run the application for the first time
+                // The site route (domain) ex: http://google.com
+                routes.MapRoute(
+                   name: null,
+                   template: "",
+                   defaults: new { controller = "Home", action = "Index"}
+                   );
+
+                // ViewRecipe Route URL
+                routes.MapRoute(
+                    name: null,
+                    template: "{controller}/{action}/Recipe{recipeID:int}",
+                    defaults: new { controller = "Home", action = "ViewRecipe"}
+                    );
+
+                // regular route mechanism
+                routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
+            });
             app.UseMvcWithDefaultRoute();
 
         }
