@@ -19,6 +19,7 @@ namespace RecipeSystem
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseDefaultServiceProvider(options => options.ValidateScopes = false); // disable scope verification otherwise the database won't get created automatically ;
     }
 }

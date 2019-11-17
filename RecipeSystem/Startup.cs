@@ -5,16 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RecipeSystem.Models;
 
 namespace RecipeSystem
 {
     public class Startup
     {
+        // public property, this will store the configuration info from appsettings
+        public IConfiguration Configuration { get; } // MVC will create a concrete class to this automatically
+
+        // constructor
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // connecting database to the connection string which we configure in appsettings and already store in Configuration property.
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:RecipeSystemRecipes:ConnectionString"]));
+
+            services.AddTransient<IRecipeRepository, EFRecipeRepository>();
+
             services.AddMvc();
         }
 

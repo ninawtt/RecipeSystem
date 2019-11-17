@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace RecipeSystem.Models
 {
-    public static class RecipeRepository
+    public class RecipeRepository
     {
+
         private static List<Recipe> recipes = new List<Recipe>
         {
             // hard code data
