@@ -13,7 +13,15 @@
 
     <div>
         <span class="card-text p-1">
-            @Model.BriefIntro
+            @*Display limit words for Bried Intro*@
+            @if (Model.BriefIntro.Length > 25) 
+            {
+                @Model.BriefIntro.Substring(0, Model.BriefIntro.IndexOf(" ", 25)); @: ...
+            }
+            else
+            {
+                @Model.BriefIntro;
+            }
             <a class="btn btn-success btn-sm pull-right" asp-action="ViewRecipe" asp-route-recipeID="@Model.RecipeID">
                 View Recipe
             </a>

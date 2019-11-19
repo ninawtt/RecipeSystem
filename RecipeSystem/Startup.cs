@@ -63,8 +63,8 @@ namespace RecipeSystem
                 // regular route mechanism
                 routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
             });
-            app.UseMvcWithDefaultRoute();
 
+            SeedData.EnsurePopulated(app);
         }
     }
 }

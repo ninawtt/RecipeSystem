@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace RecipeSystem.Models
 {
+    // a class allows us to connect to the database
+    // each database needs its own context(ApplicationDbContext)
+    // this class is a bridging class connecting EFProductRepository and EntityFramework which connects the database
+    // EFProductRepository <-> ApplicationDbContext <-> EntityFramework <-> Database
     public class ApplicationDbContext : DbContext
     {
         // Constructor
