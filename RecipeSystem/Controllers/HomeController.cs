@@ -9,6 +9,14 @@ namespace RecipeSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private IRecipeRepository recipeRepository;
+
+        // Constructor
+        public HomeController(IRecipeRepository repo) // magic of Dependency Injection
+        {
+            recipeRepository = repo;
+        }
+
         public ViewResult Index()
         {
             return View();
@@ -24,7 +32,7 @@ namespace RecipeSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                RecipeRepository.AddRecipe(recipe);
+                recipeRepository.SaveRecipe(recipe);
                 return View("Thanks");
             }
             else
@@ -35,12 +43,12 @@ namespace RecipeSystem.Controllers
 
         public ViewResult RecipeList()
         {
-            return View(RecipeRepository.Recipes);
+            return View(recipeRepository.Recipes);
         }
 
         public ViewResult ViewRecipe(int recipeID)
         {
-            Recipe recipe = RecipeRepository.Recipes
+            Recipe recipe = recipeRepository.Recipes
                 .FirstOrDefault(r => r.RecipeID == recipeID);
             return View(recipe);
         }
