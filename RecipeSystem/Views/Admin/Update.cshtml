@@ -1,0 +1,18 @@
+﻿@model Recipe
+@{
+    ViewBag.Title = "Update Recipe";
+    Layout = "_AdminLayout";
+}
+
+<div class="panel-body align-content-center m-5">
+    <form asp-action="Update" method="post">
+        <input type="hidden" asp-for="RecipeID" />
+
+        @Html.Partial("RecipeFields")
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
