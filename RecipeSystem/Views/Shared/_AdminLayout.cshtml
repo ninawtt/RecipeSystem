@@ -16,17 +16,19 @@
         </a>
         <h4>iCook Admin - @ViewBag.Title</h4>
     </nav>
+    <div>
         <div class="bg-info p-2 row">
             <div class="col">
-                
+
             </div>
         </div>
         @if (TempData["message"] != null)
         {
-            <div class="alert alert-success mt-1">@TempData["message"]</div>
+            <div class="alert alert-success position-relative" style="margin-top: 50px">@TempData["message"]</div>
         }
         <div id="renderBody">
             @RenderBody()
         </div>
+    </div>
 </body>
 </html>

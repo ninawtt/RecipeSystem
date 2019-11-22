@@ -10,5 +10,6 @@ namespace RecipeSystem.Models
         IQueryable<Recipe> Recipes { get; }
 
         void SaveRecipe(Recipe recpie); // abstract method
+        Recipe DeleteRecipe(int recipeID); 
     }
 }

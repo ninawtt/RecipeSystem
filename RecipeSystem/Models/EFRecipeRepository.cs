@@ -44,5 +44,20 @@ namespace RecipeSystem.Models
             }
             context.SaveChanges();
         }
+
+        
+        public Recipe DeleteRecipe(int recipeID)
+        {
+            Recipe recipeEntry = context.Recipes
+                .FirstOrDefault(r => r.RecipeID == recipeID);
+
+            if (recipeEntry != null)
+            {
+                context.Recipes.Remove(recipeEntry);
+                context.SaveChanges();
+            }
+
+            return recipeEntry;
+        }
     }
 }

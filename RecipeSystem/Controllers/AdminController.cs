@@ -19,11 +19,14 @@ namespace RecipeSystem.Controllers
         
         public ViewResult Index() => View(recipeRepository.Recipes);
 
+        public ViewResult Create() => View("Update", new Recipe());
+
         public ViewResult Update(int recipeID)
         {
             return View(recipeRepository.Recipes
                 .FirstOrDefault(r => r.RecipeID == recipeID));
         }
+        
 
         [HttpPost]
         public IActionResult Update(Recipe recipe)
@@ -38,6 +41,19 @@ namespace RecipeSystem.Controllers
             {
                 return View(recipe);
             }
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int recipeID)
+        {
+            Recipe deletedRecipe = recipeRepository.DeleteRecipe(recipeID);
+
+            if (deletedRecipe != null)
+            {
+                TempData["message"] = $"{deletedRecipe.DishName} was deleted!";
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
