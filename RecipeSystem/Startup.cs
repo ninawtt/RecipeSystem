@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,14 @@ namespace RecipeSystem
             // connecting database to the connection string which we configure in appsettings and already store in Configuration property.
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:RecipeSystemRecipes:ConnectionString"]));
 
+            // to tell AppIdentityDbContext where our database is 
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:RecipeSystemIdentity:ConnectionString"]));
+
+            // add Identity service to our application
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>() // to say where is the data stored
+                .AddDefaultTokenProviders();
+
             services.AddTransient<IRecipeRepository, EFRecipeRepository>();
 
             services.AddMvc();
@@ -42,6 +51,7 @@ namespace RecipeSystem
 
             // to the static files inside wwwroot folder
             app.UseStaticFiles();
+            app.UseAuthentication(); // enable the application to use authenitcation that we configured inside "configureServices"; see AccountController constructor, due to this code, it will pass the parameters into the constructor
 
             app.UseMvc(routes =>
             {
@@ -65,6 +75,7 @@ namespace RecipeSystem
             });
 
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

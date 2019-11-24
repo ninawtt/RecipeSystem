@@ -4,29 +4,45 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: skyblue;">
         <a class="navbar-brand" asp-action="Index">
             <i class="fas fa-wrench"></i>
-
         </a>
-        <h4>iCook Admin - @ViewBag.Title</h4>
+        <div class="col">
+            <h4>iCook Admin - @ViewBag.Title</h4>
+        </div>
+        <div class="col-2">
+            @*to check if the user already login, if yes, then show the log out button*@
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-sm btn-primary"
+                    asp-action="Logout" asp-controller="Account">Log Out</a>
+            }
+        </div>
     </nav>
     <div>
-        <div class="bg-info p-2 row">
+        @*<div class="bg-info p-2 row">
             <div class="col">
 
             </div>
-        </div>
-        @if (TempData["message"] != null)
-        {
-            <div class="alert alert-success position-relative" style="margin-top: 50px">@TempData["message"]</div>
-        }
+        </div>*@
+       
         <div id="renderBody">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success position-relative" style="margin-top: 50px">@TempData["message"]</div>
+            }
             @RenderBody()
         </div>
     </div>

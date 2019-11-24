@@ -1,6 +1,7 @@
 ﻿/*_BasicLayout*/
 #renderBody {
     min-height: 583px;
+    margin-top: 60px;
     /*padding-top: 60px;*/
 }
 
@@ -14,6 +15,10 @@ footer {
     padding-bottom: 0px !important;
 }
 
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}
 
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RecipeSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace RecipeSystem.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IRecipeRepository recipeRepository;
@@ -31,7 +33,7 @@ namespace RecipeSystem.Controllers
         [HttpPost]
         public IActionResult Update(Recipe recipe)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //server-side validation
             {
                 recipeRepository.SaveRecipe(recipe);
                 TempData["message"] = $"{recipe.DishName} has been saved!";
