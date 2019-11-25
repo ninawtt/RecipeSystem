@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting.Internal; //Contain a method to access the physical path of a variable in the application
 
 namespace RecipeSystem.Controllers
 {
@@ -12,37 +14,88 @@ namespace RecipeSystem.Controllers
     public class AdminController : Controller
     {
         private IRecipeRepository recipeRepository;
+        private HostingEnvironment hostingEnvironment;
 
         // Constructor
-        public AdminController (IRecipeRepository repo)
+        public AdminController (IRecipeRepository repo, HostingEnvironment hostingEnv)
         {
             recipeRepository = repo;
+            hostingEnvironment = hostingEnv; // to implement the image uploading function
         }
         
         public ViewResult Index() => View(recipeRepository.Recipes);
 
-        public ViewResult Create() => View("Update", new Recipe());
+        public ViewResult Create()
+        {
+            ViewBag.Title = "Add Recipe";
+            return View("Update", new Recipe());
+        }
 
         public ViewResult Update(int recipeID)
         {
+            ViewBag.Title = "Update Recipe";
             return View(recipeRepository.Recipes
                 .FirstOrDefault(r => r.RecipeID == recipeID));
         }
-        
 
         [HttpPost]
         public IActionResult Update(Recipe recipe)
         {
-            if (ModelState.IsValid) //server-side validation
+            if (!ModelState.IsValid) //server-side validation
             {
-                recipeRepository.SaveRecipe(recipe);
-                TempData["message"] = $"{recipe.DishName} has been saved!";
-                return RedirectToAction(nameof(Index));
+                ViewBag.Title = "Update Recipe";
+                return View(recipe);
+            }
+            
+            recipeRepository.SaveRecipe(recipe);
+            TempData["message"] = $"{recipe.DishName} has been saved!";
+
+            /////////////////////
+            //Save Recipe Image//
+            /////////////////////
+
+            // Get recipe ID we have saved in database
+            int recipeID = recipe.RecipeID;
+
+            // Get wwwroot path to save the file on server
+            string wwwrootPath = hostingEnvironment.WebRootPath;
+
+            // Get the uploaded files
+            var files = HttpContext.Request.Form.Files;
+
+            // Get the reference of DBset for the recipe we just have saved in database
+            Recipe savedRecipe = recipeRepository.Recipes
+                .FirstOrDefault(r => r.RecipeID == recipeID);
+
+            // Upload the files on server and save the image path if user have uploaded any file
+            if (files.Count != 0)
+            {
+                string imagePath = @"images/recipe/";
+                string extension = Path.GetExtension(files[0].FileName);
+                string RelativeImagePath = imagePath + recipeID + extension;
+                string absImagePath = Path.Combine(wwwrootPath, RelativeImagePath);
+
+                //Upload the file on server
+                using (var fileStream = new FileStream(absImagePath, FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+
+                // Set the image path on database
+                savedRecipe.ImagePath = RelativeImagePath;
+                
             }
             else
             {
-                return View(recipe);
+                // Set the default image path on database
+                savedRecipe.ImagePath = "images/DefaultRecipe.jpg";
             }
+            recipeRepository.SaveRecipe(savedRecipe);
+
+
+
+            return RedirectToAction(nameof(Index));
+            
         }
 
         [HttpPost]

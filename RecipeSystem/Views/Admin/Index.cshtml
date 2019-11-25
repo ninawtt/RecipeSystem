@@ -21,8 +21,6 @@
                 <form asp-action="Delete" method="post">
                     <input type="hidden" name="RecipeID" value="@r.RecipeID" />
 
-                    <a asp-action="View" class="btn btn-sm btn-info"
-                       asp-route-RecipeID="@r.RecipeID"><i class="far fa-eye"></i></a>
                     <a asp-action="Update" class="btn btn-sm btn-warning"
                        asp-route-RecipeID="@r.RecipeID"><i class="far fa-edit" style="color: white;"></i></a>
 

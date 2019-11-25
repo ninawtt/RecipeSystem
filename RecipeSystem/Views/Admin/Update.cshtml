@@ -1,11 +1,10 @@
 ﻿@model Recipe
 @{
-    ViewBag.Title = "Update Recipe";
     Layout = "_AdminLayout";
 }
 
 <div class="panel-body align-content-center m-5">
-    <form asp-action="Update" method="post">
+    <form asp-action="Update" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="RecipeID" />
 
         @Html.Partial("RecipeFields")

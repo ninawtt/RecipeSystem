@@ -15,29 +15,47 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: skyblue;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: lemonchiffon;">
+        <a class="navbar-brand" asp-action="Index">
+            <i class="fas fa-wrench"></i>
+                iCook Admin
+        </a>
+
+        <div class="p-2 row" style="padding: 0px !important; display: contents;">
+            <div class="col text-center">
+                <h4>@ViewBag.Title</h4>
+            </div>
+            @*to check if the user already login, if yes, then show the log out button*@
+            <div class="col-2">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-sm btn-primary"
+                       asp-action="Logout" asp-controller="Account" style="background-color: lightcoral; border-color: chocolate;">Log Out</a>
+                }
+            </div>
+        </div>
+    </nav>
+    @*<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: skyblue;">
         <a class="navbar-brand" asp-action="Index">
             <i class="fas fa-wrench"></i>
         </a>
-        <div class="col">
-            <h4>iCook Admin - @ViewBag.Title</h4>
-        </div>
-        <div class="col-2">
+   
+        <div class="col-2">*@
             @*to check if the user already login, if yes, then show the log out button*@
-            @if (User.Identity.IsAuthenticated)
+            @*@if (User.Identity.IsAuthenticated)
             {
                 <a class="btn btn-sm btn-primary"
-                    asp-action="Logout" asp-controller="Account">Log Out</a>
+                   asp-action="Logout" asp-controller="Account">Log Out</a>
             }
         </div>
-    </nav>
+    </nav>*@
     <div>
         @*<div class="bg-info p-2 row">
-            <div class="col">
+                <div class="col">
 
-            </div>
-        </div>*@
-       
+                </div>
+            </div>*@
+
         <div id="renderBody">
             @if (TempData["message"] != null)
             {

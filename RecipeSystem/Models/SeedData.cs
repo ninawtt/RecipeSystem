@@ -32,7 +32,7 @@ namespace RecipeSystem.Models
                         PrepTime = 50,
                         Ingredients = "Chicken",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "SesameChicken.png"
+                        ImagePath = "images/SesameChicken.png"
                     },
                     new Recipe
                     {
@@ -43,7 +43,7 @@ namespace RecipeSystem.Models
                         PrepTime = 75,
                         Ingredients = "Chicken breast",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "ChickenCongee.png"
+                        ImagePath = "images/ChickenCongee.png"
                     },
                     new Recipe
                     {
@@ -54,7 +54,7 @@ namespace RecipeSystem.Models
                         PrepTime = 60,
                         Ingredients = "Rice noodles, Chicken breast",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "PadThai.png"
+                        ImagePath = "images/PadThai.png"
                     },
                     new Recipe
                     {
@@ -65,7 +65,7 @@ namespace RecipeSystem.Models
                         PrepTime = 30,
                         Ingredients = "Chicken breast, Mexican cheese blend, Instant white rice",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "Enchilada.png"
+                        ImagePath = "images/Enchilada.png"
                     }
                  );
 

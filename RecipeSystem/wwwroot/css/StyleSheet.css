@@ -20,6 +20,15 @@ footer {
     background-color: #fee;
 }
 
+#dishPic {
+    width: 300px;
+    height: 300px;
+}
+
+#recipeListCard {
+    width: 330px;
+    height: 420px;
+}
 
 
 

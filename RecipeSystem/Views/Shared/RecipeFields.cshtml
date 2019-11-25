@@ -36,3 +36,8 @@
         <div><span asp-validation-for="Directions" class="text-danger"></span></div>
         <textarea class="form-control" style="height:100px;" asp-for="Directions"></textarea>
     </div>
+    <div class="form-group">
+        <label asp-for="ImagePath">Image</label>
+        <div><span asp-validation-for="ImagePath" class="text-danger"></span></div>
+        <input type="file" name="files" class="form-control" />
+    </div>
