@@ -66,36 +66,69 @@ namespace RecipeSystem.Controllers
             // Get the reference of DBset for the recipe we just have saved in database
             Recipe savedRecipe = recipeRepository.Recipes
                 .FirstOrDefault(r => r.RecipeID == recipeID);
-
-            // Upload the files on server and save the image path if user have uploaded any file
+            
+            //V2
             if (files.Count != 0)
             {
-                string imagePath = @"images/recipe/";
-                string extension = Path.GetExtension(files[0].FileName);
-                string RelativeImagePath = imagePath + recipeID + extension;
-                string absImagePath = Path.Combine(wwwrootPath, RelativeImagePath);
-
-                //Upload the file on server
-                using (var fileStream = new FileStream(absImagePath, FileMode.Create))
+                for (int i = 0; i < files.Count; i++)
                 {
-                    files[0].CopyTo(fileStream);
-                }
+                    string imagePath = @"images/recipe/";
+                    string extension = Path.GetExtension(files[i].FileName);
+                    string RelativeImagePath = imagePath + recipeID + "-" + (i+1) + extension;
+                    string absImagePath = Path.Combine(wwwrootPath, RelativeImagePath);
 
-                // Set the image path on database
-                savedRecipe.ImagePath = RelativeImagePath;
-                
+                    //Upload the file on server
+                    using (var fileStream = new FileStream(absImagePath, FileMode.Create))
+                    {
+                        files[i].CopyTo(fileStream);
+                    }
+
+                    // Set the image path on database
+                    
+                    if(savedRecipe.Images != null)
+                    {
+                        savedRecipe.Images.Add(new Image() { RecipeID = savedRecipe.RecipeID, Path = RelativeImagePath });
+                    } else
+                    {
+                        savedRecipe.Images = new List<Image> { new Image() { RecipeID = savedRecipe.RecipeID, Path = RelativeImagePath } };
+                    }
+                }
             }
             else
             {
                 // Set the default image path on database
-                savedRecipe.ImagePath = "images/DefaultRecipe.jpg";
+                savedRecipe.Images = new List<Image> { new Image() { RecipeID = savedRecipe.RecipeID, Path = "images/DefaultRecipe.jpg" } };
             }
-            recipeRepository.SaveRecipe(savedRecipe);
 
 
 
-            return RedirectToAction(nameof(Index));
+            //V1
+            // Upload the files on server and save the image path if user have uploaded any file
+            //if (files.Count != 0)
+            //{
+            //    string imagePath = @"images/recipe/";
+            //    string extension = Path.GetExtension(files[0].FileName);
+            //    string RelativeImagePath = imagePath + recipeID + extension;
+            //    string absImagePath = Path.Combine(wwwrootPath, RelativeImagePath);
+
+            //    //Upload the file on server
+            //    using (var fileStream = new FileStream(absImagePath, FileMode.Create))
+            //    {
+            //        files[0].CopyTo(fileStream);
+            //    }
+
+            //    // Set the image path on database
+            //    savedRecipe.ImagePath = RelativeImagePath;
+
+            //}
+            //else
+            //{
+            //    // Set the default image path on database
+            //    savedRecipe.ImagePath = "images/DefaultRecipe.jpg";
+            //}
             
+            recipeRepository.SaveRecipe(savedRecipe);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

@@ -31,6 +31,7 @@ namespace RecipeSystem.Models
         [Required(ErrorMessage = "Please enter directions")]
         public string Directions { get; set; }
 
-        public string ImagePath { get; set; }
+        //public string ImagePath { get; set; }
+        public List<Image> Images { get; set; }
     }
 }

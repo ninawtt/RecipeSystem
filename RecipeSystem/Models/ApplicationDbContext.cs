@@ -15,7 +15,20 @@ namespace RecipeSystem.Models
         // Constructor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
             : base(options) { } // calling DbContext's constructor (Parent's constructor)
-
+        
         public DbSet<Recipe> Recipes { get; set; } // the name of table: Recipes
+
+        public DbSet<Image> Images { get; set; } // the name of table: Images
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Image>()
+                .HasOne(i => i.Recipe)
+                .WithMany(r => r.Images);
+            //modelBuilder.Entity<Recipe>()
+            //    .HasMany(r => r.Images)
+            //    .WithOne();
+
+        }
     }
 }
