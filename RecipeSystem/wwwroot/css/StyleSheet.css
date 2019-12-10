@@ -30,5 +30,81 @@ footer {
     height: 420px;
 }
 
+#detailPictures {
+    /*border: 0.5px ridge #C0C0C0;*/
+    padding: 5px;
+    float: left;
+    margin-right: 8px;
+    width: 400px;
+}
 
+#detailTables {
+    float: left;
+}
+
+table {
+    margin: 0px 5px 5px 8px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    border-collapse: collapse;
+    border: 0.5px ridge #C0C0C0;
+}
+
+td {
+    border: 0.5px ridge #C0C0C0;
+    padding: 4px;
+}
+
+#price {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2em;
+}
+
+.column1 {
+    background-color: #EBEBEB;
+    width: 90px;
+}
+
+h2 {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+.thumbnails {
+    float: left;
+    padding: 2px;
+    margin: 5px;
+    border: 1px ridge #C0C0C0;
+    opacity: 0.5;
+}
+
+#gallery span {
+    display: none;
+}
+
+#gallery a:hover span {
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 163.5px;
+}
+
+#gallery img:hover {
+    opacity: 1;
+}
+
+#largePictures {
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#gallery {
+    padding-left: 8%;
+}
+
+.w-60 {
+    width:60%;
+}
 

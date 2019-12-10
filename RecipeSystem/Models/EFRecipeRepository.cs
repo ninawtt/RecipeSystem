@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeSystem.Models
 {
@@ -17,13 +18,13 @@ namespace RecipeSystem.Models
             //counter = context.Recipes.Count();
     }
 
-        public IQueryable<Recipe> Recipes => context.Recipes;
+        public IQueryable<Recipe> Recipes => context.Recipes.Include( r => r.Images); // in order to include Images 
+        //public IQueryable<Image> Images => context.Images;
 
         public void SaveRecipe(Recipe recipe)
         {
             if (recipe.RecipeID == 0) // if the RecipeID equal 0, it means it is a new one, then save it into the Recipes
             {
-                //recipe.RecipeID = counter++;
                 context.Recipes.Add(recipe);
             } 
             else
@@ -40,6 +41,7 @@ namespace RecipeSystem.Models
                     recipeEntry.Servings = recipe.Servings;
                     recipeEntry.Ingredients = recipe.Ingredients;
                     recipeEntry.Directions = recipe.Directions;
+                    //recipeEntry.Images = Images.Where(i => i.RecipeID == recipeEntry.RecipeID).ToList();
                 }
             }
             context.SaveChanges();

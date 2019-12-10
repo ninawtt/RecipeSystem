@@ -18,6 +18,23 @@ namespace RecipeSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("RecipeSystem.Models.Image", b =>
+                {
+                    b.Property<int>("ImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Path");
+
+                    b.Property<int>("RecipeID");
+
+                    b.HasKey("ImageID");
+
+                    b.HasIndex("RecipeID");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("RecipeSystem.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeID")
@@ -36,8 +53,6 @@ namespace RecipeSystem.Migrations
                     b.Property<string>("DishName")
                         .IsRequired();
 
-                    b.Property<string>("ImagePath");
-
                     b.Property<string>("Ingredients")
                         .IsRequired();
 
@@ -48,6 +63,14 @@ namespace RecipeSystem.Migrations
                     b.HasKey("RecipeID");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeSystem.Models.Image", b =>
+                {
+                    b.HasOne("RecipeSystem.Models.Recipe", "Recipe")
+                        .WithMany("Images")
+                        .HasForeignKey("RecipeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

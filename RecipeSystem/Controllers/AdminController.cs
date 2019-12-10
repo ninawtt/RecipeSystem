@@ -47,7 +47,7 @@ namespace RecipeSystem.Controllers
                 return View(recipe);
             }
             
-            recipeRepository.SaveRecipe(recipe);
+            //recipeRepository.SaveRecipe(recipe);
             TempData["message"] = $"{recipe.DishName} has been saved!";
 
             /////////////////////
@@ -62,12 +62,21 @@ namespace RecipeSystem.Controllers
 
             // Get the uploaded files
             var files = HttpContext.Request.Form.Files;
-
-            // Get the reference of DBset for the recipe we just have saved in database
-            Recipe savedRecipe = recipeRepository.Recipes
-                .FirstOrDefault(r => r.RecipeID == recipeID);
+            Recipe savedRecipe = null;
+            if (recipeID == 0)
+            {
+                //add
+                savedRecipe = recipe;
+            } else
+            {
+                //update
+                // Get the reference of DBset for the recipe we just have saved in database
+                savedRecipe = recipeRepository.Recipes
+                    .FirstOrDefault(r => r.RecipeID == recipeID);
+            }
             
-            //V2
+            
+            //V2: Upload multiple images
             if (files.Count != 0)
             {
                 for (int i = 0; i < files.Count; i++)
@@ -100,32 +109,7 @@ namespace RecipeSystem.Controllers
                 savedRecipe.Images = new List<Image> { new Image() { RecipeID = savedRecipe.RecipeID, Path = "images/DefaultRecipe.jpg" } };
             }
 
-
-
-            //V1
-            // Upload the files on server and save the image path if user have uploaded any file
-            //if (files.Count != 0)
-            //{
-            //    string imagePath = @"images/recipe/";
-            //    string extension = Path.GetExtension(files[0].FileName);
-            //    string RelativeImagePath = imagePath + recipeID + extension;
-            //    string absImagePath = Path.Combine(wwwrootPath, RelativeImagePath);
-
-            //    //Upload the file on server
-            //    using (var fileStream = new FileStream(absImagePath, FileMode.Create))
-            //    {
-            //        files[0].CopyTo(fileStream);
-            //    }
-
-            //    // Set the image path on database
-            //    savedRecipe.ImagePath = RelativeImagePath;
-
-            //}
-            //else
-            //{
-            //    // Set the default image path on database
-            //    savedRecipe.ImagePath = "images/DefaultRecipe.jpg";
-            //}
+          
             
             recipeRepository.SaveRecipe(savedRecipe);
             return RedirectToAction(nameof(Index));

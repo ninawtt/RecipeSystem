@@ -21,7 +21,7 @@ namespace RecipeSystem.Models
                     PrepTime = 50,
                     Ingredients = "Chicken",
                     Directions = "Step1: , Step2: , Step3: , Step4: ",
-                    ImagePath = "SesameChicken.png"
+                    //ImagePath = "SesameChicken.png"
                 },
                 new Recipe
                 {
@@ -33,7 +33,7 @@ namespace RecipeSystem.Models
                     PrepTime = 75,
                     Ingredients = "Chicken breast",
                     Directions = "Step1: , Step2: , Step3: , Step4: ",
-                    ImagePath = "ChickenCongee.png"
+                    //ImagePath = "ChickenCongee.png"
                 },
                 new Recipe
                 {
@@ -45,7 +45,7 @@ namespace RecipeSystem.Models
                     PrepTime = 60,
                     Ingredients = "Rice noodles, Chicken breast",
                     Directions = "Step1: , Step2: , Step3: , Step4: ",
-                    ImagePath = "PadThai.png"
+                    //ImagePath = "PadThai.png"
                 },
                 new Recipe
                 {
@@ -57,7 +57,7 @@ namespace RecipeSystem.Models
                     PrepTime = 30,
                     Ingredients = "Chicken breast, Mexican cheese blend, Instant white rice",
                     Directions = "Step1: , Step2: , Step3: , Step4: ",
-                    ImagePath = "Enchilada.png"
+                    //ImagePath = "Enchilada.png"
                 }
         };
         private static int counter = recipes.Count();

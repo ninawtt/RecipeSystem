@@ -32,7 +32,8 @@ namespace RecipeSystem.Models
                         PrepTime = 50,
                         Ingredients = "Chicken",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "images/SesameChicken.png"
+                        Images = new List<Image>() { new Image() { RecipeID = 1, Path = "images/SesameChicken.png" } }
+                        //ImagePath = "images/SesameChicken.png"
                     },
                     new Recipe
                     {
@@ -43,7 +44,8 @@ namespace RecipeSystem.Models
                         PrepTime = 75,
                         Ingredients = "Chicken breast",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "images/ChickenCongee.png"
+                        Images = new List<Image>() { new Image() { RecipeID = 2, Path = "images/ChickenCongee.png" } }
+                        //ImagePath = "images/ChickenCongee.png"
                     },
                     new Recipe
                     {
@@ -54,7 +56,8 @@ namespace RecipeSystem.Models
                         PrepTime = 60,
                         Ingredients = "Rice noodles, Chicken breast",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "images/PadThai.png"
+                        Images = new List<Image>() { new Image() { RecipeID = 3, Path = "images/PadThai.png" } }
+                        //ImagePath = "images/PadThai.png"
                     },
                     new Recipe
                     {
@@ -65,7 +68,8 @@ namespace RecipeSystem.Models
                         PrepTime = 30,
                         Ingredients = "Chicken breast, Mexican cheese blend, Instant white rice",
                         Directions = "Step1: , Step2: , Step3: , Step4: ",
-                        ImagePath = "images/Enchilada.png"
+                        Images = new List<Image>() { new Image() { RecipeID = 4, Path = "images/Enchilada.png" } }
+                        //ImagePath = "images/Enchilada.png"
                     }
                  );
 

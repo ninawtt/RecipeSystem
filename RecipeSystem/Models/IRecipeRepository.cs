@@ -8,7 +8,6 @@ namespace RecipeSystem.Models
     public interface IRecipeRepository
     {
         IQueryable<Recipe> Recipes { get; }
-
         void SaveRecipe(Recipe recpie); // abstract method
         Recipe DeleteRecipe(int recipeID); 
     }

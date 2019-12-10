@@ -9,7 +9,7 @@ using RecipeSystem.Models;
 namespace RecipeSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191119015619_Initial")]
+    [Migration("20191207212032_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,23 @@ namespace RecipeSystem.Migrations
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("RecipeSystem.Models.Image", b =>
+                {
+                    b.Property<int>("ImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Path");
+
+                    b.Property<int>("RecipeID");
+
+                    b.HasKey("ImageID");
+
+                    b.HasIndex("RecipeID");
+
+                    b.ToTable("Images");
+                });
 
             modelBuilder.Entity("RecipeSystem.Models.Recipe", b =>
                 {
@@ -38,8 +55,6 @@ namespace RecipeSystem.Migrations
                     b.Property<string>("DishName")
                         .IsRequired();
 
-                    b.Property<string>("ImagePath");
-
                     b.Property<string>("Ingredients")
                         .IsRequired();
 
@@ -50,6 +65,14 @@ namespace RecipeSystem.Migrations
                     b.HasKey("RecipeID");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeSystem.Models.Image", b =>
+                {
+                    b.HasOne("RecipeSystem.Models.Recipe", "Recipe")
+                        .WithMany("Images")
+                        .HasForeignKey("RecipeID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

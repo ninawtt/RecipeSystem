@@ -10,7 +10,7 @@ using RecipeSystem.Models;
 namespace RecipeSystem.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20191122194244_Initial")]
+    [Migration("20191210011732_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

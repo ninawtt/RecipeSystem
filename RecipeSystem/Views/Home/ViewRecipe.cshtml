@@ -4,12 +4,27 @@
 }
 
 <div class="text-center">
-    <div class="card border-info mb-3 w-50 align-self-center mr-auto ml-auto">
-        <div class="row no-gutters">
-            <div class="col p-2">
-                <img id="dishPic" src="~/@Model.ImagePath" class="card-img" />
+    <div class="card border-info mb-3 w-60 align-self-center mr-auto ml-auto">
+        <div class="row no-gutters mr-auto ml-auto w-50">
+            @*<div class="col p-2">
+                <img id="dishPic" src="~/@Model.Images.FirstOrDefault().Path" class="card-img" />
+            </div>*@
+            <div id="detailPictures">
+                <div id="largePictures">
+                    <img id="detailPic" height="300" width="300" src="~/@Model.Images.FirstOrDefault().Path">
+                </div>
+                <div>
+                    <div id="gallery">
+                        @foreach (Image i in Model.Images)
+                        {
+                            <img class="thumbnails" height="80" src="~/@i.Path" width="80" onclick="changePic('/@i.Path')">
+                        }
+                        
+                    </div>
+
+                </div>
             </div>
-            <div class="col-md-auto">
+            <div class="col">
                 <div class="card-body">
                     <h4 class="card-title">@Model.DishName</h4>
                     <p class="card-text">@Model.BriefIntro</p>

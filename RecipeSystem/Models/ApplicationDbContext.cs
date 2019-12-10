@@ -17,14 +17,14 @@ namespace RecipeSystem.Models
             : base(options) { } // calling DbContext's constructor (Parent's constructor)
         
         public DbSet<Recipe> Recipes { get; set; } // the name of table: Recipes
-
         public DbSet<Image> Images { get; set; } // the name of table: Images
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)  // configure a one-to-many relationship
         {
             modelBuilder.Entity<Image>()
                 .HasOne(i => i.Recipe)
-                .WithMany(r => r.Images);
+                .WithMany(r => r.Images)
+                .HasForeignKey(i => i.RecipeID);
             //modelBuilder.Entity<Recipe>()
             //    .HasMany(r => r.Images)
             //    .WithOne();
